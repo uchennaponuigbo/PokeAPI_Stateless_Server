@@ -1,0 +1,22 @@
+{
+  "name": "pokeapi-server",
+  "version": "1.0.0",
+  "description": "Final Project for CS 4220",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "windows": ".\\node_modules\\.bin\\nodemon server.js",
+    "start": "./node_modules/.bin/nodemon server.js"
+  },
+  "author": "Uchenna Onuigbo",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.1",
+    "mongodb": "^4.6.0",
+    "pokeapi-api": "file:../pokeapi-api"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.16"
+  }
+}

@@ -1,0 +1,37 @@
+STARTING THE SERVER
+
+npm run windows
+npm run start
+
+EXAMPLE COMMANDS FOR PROFESSOR/TA
+GET
+localhost:8888/search/ability?pokemon=pikachu
+localhost:8888/search/ability?pokemon=blacephalon
+localhost:8888/search/ability?pokemon=frogadier
+
+localhost:8888/history/search
+
+POST
+localhost:8888/search/ability/details
+
+JSON structure
+{
+  "keyword": "pokemon name here",
+  "resultsCount": int,
+  "id": ability id here,
+ "displayText": "name of ability"
+}
+
+Feedback from Midterm
+That being said, there is actually a lot happening in this code.  Specifically the “search”.  
+
+The API doesn’t actually support search, so instead have the user pick a Pokemon and then you attempt 
+to go through a process of getting those abilities bu never prompt the user.  
+You go right back to the API and get some data.  
+
+It is not really clear what the search goal is here.  
+Are you trying to implement a "search" by pokemon and then present a list of abilities 
+and then get ore details on those?
+
+Seems like the opposite would be better, allow the user to search by ability get a list of pokemon 
+that have the ability and then let the user to select to get more detail.

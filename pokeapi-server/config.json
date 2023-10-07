@@ -1,0 +1,8 @@
+{
+    "cluster": "finalproject.0nwut.mongodb.net",
+    "db_name": "FinalProject",
+    "username": "skyguys",
+	"password": "zTJhxaWdx4owRQJe",
+    "connectionString": "mongodb+srv://skyguys:<password>@finalproject.0nwut.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+    "ip": "0.0.0.0"
+}

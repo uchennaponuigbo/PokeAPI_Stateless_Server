@@ -1,0 +1,4 @@
+{
+    "get" : "https://pokeapi.co/api/v2/", 
+    "search" : "https://pokeapi.co/api/v2/pokemon/"
+}

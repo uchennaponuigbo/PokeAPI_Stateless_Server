@@ -1,0 +1,124 @@
+//Formerly the required Print function from the Midterm
+const _formatPkmnData = (pokemonData = {}) =>
+{
+    // return pokemonData.map((data) =>
+    // {
+    //     return{
+    //         PokedexNo : data.id,
+    //         Name : data.name,
+    //         Abilties: data.ability,
+    //         BaseStats: data.stats
+    //     };
+    // });
+    const obj = {};
+    //console.log(`National Pokedex Number ${pokemonData.id}: ${pokemonData.name}`);
+    obj["pokedex-id"] = pokemonData.id;
+    obj["name"] = pokemonData.name;
+    obj["type"] = pokemonData.type;
+    obj["abilities"] = pokemonData.ability;
+
+    //console.log(`Type: ${pokemonData.type}\n`);
+
+    //WILL FIGURE THIS OUT LATER
+
+    //const arrOfAbilities =  pokemonData.ability;
+    //console.log(arrOfAbilities.length === 1 ? "Ability" : "Ablilities");
+    // const abiltyObj = [];
+    // for(let i = 0; i < arrOfAbilities.length; i++)
+    // {
+
+    //     console.log(`${arrOfAbilities[i].slot}: ${arrOfAbilities[i].name}`,
+    //         arrOfAbilities[i]["is_hidden"] === true ? "(Hidden)" : "");
+    // }
+    //Object.assign(obj, {arrOfAbilities.length === 1 ? "Ability" : "Ablilities", })
+
+
+    console.log("\nBase Stats");
+
+    const arrOfStats = pokemonData.stats;
+    const baseStats = [];
+    for(let i = 0; i < arrOfStats.length - 1; i++)
+    {
+        const base = {};
+        //console.log(`${arrOfStats[i].name}: ${arrOfStats[i]["base_stat"]}`);
+        base.arrOfStats[i].name = arrOfStats[i]["base_stat"];
+        baseStats.push(base);
+    }
+    Object.assign(obj, {"base-stats" : baseStats})
+    obj[total] = arrOfStats[arrOfStats.length - 1].total;
+    //console.log("Total: " + arrOfStats[arrOfStats.length - 1].total + "\n");
+    return obj;
+};
+
+
+const _filterObject = (args)=>
+{
+    //const filteredArgs = Object.entries(args).filter(([key, value]) => filterPredicate(key));
+    const filteredArgs = {};
+    const arr = args["abilities"]; 
+    const arrOfObjs = [];
+    for(let i = 0; i < arr.length; i++)
+    {
+        const obj = {};
+                    
+        obj.name = arr[i].ability.name;
+        obj["is_hidden"] = arr[i]["is_hidden"];
+        obj.slot = arr[i].slot;
+        obj["ablityIndex"] = _getAbilityUrlIndex(arr[i].ability.url);
+        // console.log(arr[i].ability.name);
+        // console.log(arr[i]["is_hidden"]);
+        // console.log(arr[i].slot);
+        //console.log(obj);
+        arrOfObjs.push(obj);
+    }
+    Object.assign(filteredArgs, {"ability" : arrOfObjs});
+
+    const arr2 = args["stats"];         
+    const arrOfObjs2 = [];
+    let total = 0;
+    for(let i = 0; i < arr2.length; i++)
+    {
+        const obj = {};
+        //console.log(arr[i]);
+        obj.name = arr2[i].stat.name;
+        //console.log(arr[i].stat.name);
+        obj["base_stat"] = arr2[i]["base_stat"];
+        //console.log(arr[i]["base_stat"]);
+        total += arr2[i]["base_stat"];
+                    
+        arrOfObjs2.push(obj);
+    }  
+    arrOfObjs2.push({"total" : total})
+    Object.assign(filteredArgs, {"stats" : arrOfObjs2});
+
+    const arr3 = args["types"];
+    let strAbility = "";
+    if(arr3.length <= 1)
+        strAbility = arr3[0].type.name;
+    else
+    {
+        strAbility = `${arr3[0].type.name}-${arr3[1].type.name}`;
+    }               
+    Object.assign(filteredArgs, {"type" : strAbility});
+
+    
+    Object.assign(filteredArgs, _filterHelper("name", args));
+    Object.assign(filteredArgs, _filterHelper("id", args));
+    
+//https://bobbyhadz.com/blog/javascript-add-key-value-pair-to-object
+
+    return filteredArgs;
+};
+
+
+const _filterHelper = (key = "", args = {}) =>
+{
+    //originally a predicate function
+    // return key === "abilities" || /*key === "base_experience" ||*/ key === "id" ||
+    //     key === "name" || key === "stats" || key === "types";
+    const obj = {};
+    obj[key] = args[key];
+    return obj;
+    //Object.assign(filteredArgs, obj);
+};
+
